@@ -1,0 +1,476 @@
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root {
+    --main-color: #e84242;
+    --black-color: #0e0e0e;
+    --border: 0.1rem solid rgba(255, 255, 255, 0.4);
+}
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0,2s ease;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x:  hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+body { 
+    background: url("{{ url_for('static', filename='images/3006560-books_library_students_study_university.jpg') }}") no-repeat;
+    min-height: 100vh;
+    background-size: cover;
+    
+}
+
+section {
+    padding: 3.5rem 7%;
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 2rem 3.75rem;
+    border-radius: 30rem;
+    font-size: 1.7rem;
+    color: #fff;
+    background-color: var(--black-color);
+    cursor: pointer;
+}
+
+.baton {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 2rem 3.75rem;
+    border-radius: 30rem;
+    font-size: 1.7rem;
+    color: #fff;
+    background-color: var(--black-color);
+    cursor: pointer;
+    margin-left: 50px;
+}
+
+.baton:hover {
+    background-color: gray;
+}
+
+.btn:hover {
+    background-color:gray; /* Parlıyan yeşil renk */
+}
+
+.header .logo img {
+    height: 12rem;
+}
+
+.header {
+    background-color:burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    margin: 2rem 7%;
+    border-radius: 30rem;
+    box-shadow: 0px 0px 17px -2px rgba(0, 0 0, 0.75);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .navbar a {
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: var(--main-color) ;
+    border-bottom: 0.1rem solid transparent;
+}
+
+.header .navbar .active,
+.header .navbar a:hover {
+    border-color: var(--main-color);
+    padding-bottom: 0.5rem;
+}
+
+.header .buttons button {
+    cursor: pointer;
+    font-size: 2.5rem;
+    margin-left: 2rem;
+    background-color: transparent;
+}
+
+.home {
+    min-height: 102vh;
+    background: url("{{ url_for('static', filename='images/pexels-ricky-esquivel-1926988.jpg') }}") no-repeat;
+    background-size: cover;
+    background-position: center;  
+    margin-top: -16.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.home .content {
+    max-width: 60rem;
+}
+
+.home .content h3 {
+    font-size: 6rem;
+    color: #fff;
+}
+
+.home .content p {
+    font-size: 2.1rem;
+    font-weight: 300;
+    line-height: 2;
+    padding: 1rem 0;
+    color: #fff;
+} 
+.about .contents h3 {
+    font-size: 6rem;
+    color: #fff;
+}
+
+.about .contents p {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.8;
+    padding: 1rem 0;
+    color: #ccc;
+    background-color: black;
+} 
+
+.home1 {
+    min-height: 102vh;
+    background: url("{{ url_for('static', filename='images/pexels-olena-bohovyk-3646172.jpg') }}") no-repeat;
+    background-size: cover;
+    background-position: center;  
+    margin-top: -16.5rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.about {
+    min-height: 102vh;
+    background: url("{{ url_for('static', filename='images/3006560-books_library_students_study_university.jpg') }}") no-repeat;
+    background-size: cover;
+    background-position: center;  
+    margin-top: -16.5rem;
+    display: flex;
+    align-items: center;
+
+}
+
+input[type="email"],
+input[type="password"] {
+    color: rgb(182, 27, 130);
+}
+
+
+
+.contact .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contact .row .map {
+    flex: 1 1 45rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20rem;
+}
+
+.contact .row form {
+    flex: 1 1 45rem;
+    padding: 5rem 2rem;
+    width: 100%;
+    object-fit: cover;
+    text-align: center;   
+    border-radius: 20rem;
+    background-color: var(--black-color);
+}
+
+.contact .row form h3 {
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    color: #fff;
+} 
+
+.contact .row form .inputBox {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    border: var(--border);
+}
+
+.contact .row form .inputBox i {
+    color: #fff;
+    font-size: 2rem;
+    padding-left: 2rem;
+}
+
+.contact .row form .inputBox input {
+    width: 100%;
+    padding: 2rem;
+    font-size: 1.7rem;
+    color: #c41414;
+    text-transform: none;
+    background-color: transparent;
+}
+
+
+.navbar .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: burlywood;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.navbar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.navbar .dropdown-content a {
+    color: var(--main-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.menu .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.menu .box-container .box {
+    padding: 3rem;
+    background-color: #fff;
+    border-radius: 3rem;
+    min-height: 30rem;
+    width: 400px;
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.menu .box-container .box-head {
+    align-items: flex-start;
+    height: 500px;
+    width: 300px;
+    margin: auto;
+}
+
+
+
+.menu .box-container .box img {
+    width: 287px;
+    height: 420px;
+    object-fit: cover;
+    
+}
+.table {
+    height: 600px;
+
+}
+
+.table-container {
+    margin: 0 auto;
+    max-width: 1200px; /* İsteğe bağlı olarak tablonun maksimum genişliğini ayarlayabilirsiniz */
+    background-color:burlywood
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style form labels */
+.form-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+/* Style form inputs */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+/* Style form select inputs */
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.invalid-feedback {
+    display: none;
+    font-size: 12px; /* İstediğiniz font boyutu */
+    color: red; /* İstediğiniz renk */
+    /* Diğer stil özellikleri */
+  }
+
+  .btn1 {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 2rem 3.75rem;
+    font-size: 12px;
+    color: #050505;
+    cursor: pointer;
+    background-color: navajowhite;
+}
+
+.table th {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+.table td {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* İhtiyaca göre ayarlayabilirsiniz */
+}
+
+
+.overlay {
+    display: flex;
+    z-index: 5;
+    top: 28%;
+    left: 37.5%;
+    width: 25%;
+    height: 45%;
+    background-color: skyblue;
+}
+
+
+.modal-content {
+    max-width: 20%; /* Maksimum genişlik */
+    max-height: 35%; /* Maksimum yükseklik */
+    display: block;
+    top: 50%; /* Ekranın dikey ortasına yerleştirme */
+    left: 50%; /* Ekranın yatay ortasına yerleştirme */
+    transform: translate(-50%, -50%); /* İçeriği tam ortalamak için */
+}
+
+.close {
+    color: black;
+    position: fixed; /* Position absolute'den fixed'e değiştirildi */
+    top: 28%;
+    right: 38%;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-box {
+    display: none;
+    position: absolute;
+    top: 60%;
+    right: 20px;
+    background-color: burlywood;
+    box-shadow: 0px 2px 4px rgba(92, 2, 2, 0.1);
+    padding: 5px;
+}
+
+.contents {
+    width: 600px;
+    margin-left: 5%;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 8%;
+
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap; 
+    grid-gap: 30px;
+    justify-content: center; 
+    align-items: center;
+    gap: 30px;
+}
+
+.gallery img {
+    width: 350px;
+    height: 500px;
+}
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Add Book</title>2
+    <!-- CSS dosyalarını bağlayın -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylee.css') }}">
+</head>
+<body>
+    <!-- Navbar'ı dahil edin -->
+    {% include 'includes/navbar.html' %}
+    
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+<hr>
+<form method="post">
+{% include "includes/messages.html" %}
+    {{ render_field(form.bookname, class = "form-control") }}
+    {{ render_field(form.author, class  = "form-control") }}
+    {{ render_field(form.page, class  = "form-control") }}
+    {{ render_field(form.isbn, class  = "form-control") }}
+    {{ render_field(form.year_of_edition, class  = "form-control") }}
+    <button type="submit" onclick="return confirm('Bilgilerin doğru olduğuna emin misiniz?')" class="btn btn-primary">Kitap Ekle</button>
+</form>
+      <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{% endblock body %}

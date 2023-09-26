@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Showbook</title>
+    <!-- CSS dosyalarını bağlayın -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylee.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lightbox.css') }}">
+</head>
+<body>
+    <!-- Navbar'ı dahil edin -->
+    {% include 'includes/navbar.html' %}
+ <div class="container">
+        <div class="gallery">
+            <a href="{{ url_for('static', filename='images/kırlangiccigiligi.jpg') }}" data-lightbox="models" data-title="KIRLANGIÇ ÇIĞLIĞI">
+                <img src="{{ url_for('static', filename='images/kırlangiccigiligi.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/calikusu.jpg') }}" data-lightbox="models" data-title="ÇALIKUŞU">
+                <img src="{{ url_for('static', filename='images/calikusu.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/yasliadamvedeniz.jpg') }}" data-lightbox="models" data-title="YAŞLI ADAM VE DENIZ">
+                <img src="{{ url_for('static', filename='images/yasliadamvedeniz.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/nutuk.jpg') }}" data-lightbox="models" data-title="NUTUK">
+                <img src="{{ url_for('static', filename='images/nutuk.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/öncesenvardın.jpg') }}" data-lightbox="models" data-title="ÖNCE SEN VARDIN">
+                <img src="{{ url_for('static', filename='images/öncesenvardın.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/yaprakdökümü.jpg') }}" data-lightbox="models" data-title="YAPRAK DÖKÜMÜ">
+                <img src="{{ url_for('static', filename='images/yaprakdökümü.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/intibah.jpg') }}" data-lightbox="models" data-title="İNTİBAH">
+                <img src="{{ url_for('static', filename='images/intibah.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/simyaci.jpg') }}" data-lightbox="models" data-title="SİMYACI">
+                <img src="{{ url_for('static', filename='images/simyaci.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/vadidekizambak.jpg') }}" data-lightbox="models" data-title="VADİDEKİ ZAMBAK">
+                <img src="{{ url_for('static', filename='images/vadidekizambak.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/piraye.jpg') }}" data-lightbox="models" data-title="PİRAYE">
+                <img src="{{ url_for('static', filename='images/piraye.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/eroinledans.jpg') }}" data-lightbox="models" data-title="EROİNLE DANS">
+                <img src="{{ url_for('static', filename='images/eroinledans.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/ensonyürekler.jpg') }}" data-lightbox="models" data-title="EN SON YÜREKLER ÖLÜR">
+                <img src="{{ url_for('static', filename='images/ensonyürekler.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/iz.jpg') }}" data-lightbox="models" data-title="İZ">
+                <img src="{{ url_for('static', filename='images/iz.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/beninedensevmedin.jpg') }}" data-lightbox="models" data-title="BENİ NEDEN SEVMEDİN ANNE">
+                <img src="{{ url_for('static', filename='images/beninedensevmedin.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/vazgecilmezolmanın.jpg') }}" data-lightbox="models" data-title="VAZGEÇİLMEZ OLMANIN SIRRI">
+                <img src="{{ url_for('static', filename='images/vazgecilmezolmanın.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/izbıraktıgınkadar.jpg') }}" data-lightbox="models" data-title="İZ BIRAKTIĞIN KADAR VARSIN">
+                <img src="{{ url_for('static', filename='images/izbıraktıgınkadar.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/senincahilligin.jpg') }}" data-lightbox="models" data-title="SENİN CAHİLLİĞİN BENİM YAŞAMIMI ETKİLİYOR">
+                <img src="{{ url_for('static', filename='images/senincahilligin.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/yarinyok.jpg') }}" data-lightbox="models" data-title="YARIN YOK">
+                <img src="{{ url_for('static', filename='images/yarinyok.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/varmısın.jpg') }}" data-lightbox="models" data-title="VAR MISIN? - GÜÇLÜ BIR YAŞAM İÇIN ÖNERILER">
+                <img src="{{ url_for('static', filename='images/varmısın.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/geceyarısı.jpg') }}" data-lightbox="models" data-title="GECE YARISI KÜTÜPHANESİ">
+                <img src="{{ url_for('static', filename='images/geceyarısı.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/dünyanınenyanlız.jpg') }}" data-lightbox="models" data-title="DÜNYANIN EN YANLIZ BEYNİ">
+                <img src="{{ url_for('static', filename='images/dünyanınenyanlız.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/pupayelken.jpg') }}" data-lightbox="models" data-title="PUPA YELKEN">
+                <img src="{{ url_for('static', filename='images/pupayelken.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/forayelken.jpg') }}" data-lightbox="models" data-title="FORA YELKEN">
+                <img src="{{ url_for('static', filename='images/forayelken.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/birömürnasıl.jpg') }}" data-lightbox="models" data-title="BİR ÖMÜR NASIL YAŞANIR">
+                <img src="{{ url_for('static', filename='images/birömürnasıl.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/atatürkyasin.jpg') }}" data-lightbox="models" data-title="ATATÜRK">
+                <img src="{{ url_for('static', filename='images/atatürkyasin.jpg') }}">
+            </a>
+            <a href="{{ url_for('static', filename='images/atatürküyasayanlar.jpg') }}" data-lightbox="models" data-title="ATATÜRK'Ü YAŞAYANLAR">
+                <img src="{{ url_for('static', filename='images/atatürküyasayanlar.jpg') }}">
+            </a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/lightbox-plus-jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

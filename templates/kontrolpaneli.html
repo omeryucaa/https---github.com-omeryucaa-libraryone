@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+    <!-- CSS dosyalarını bağlayın -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylee.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    
+
+    <style>
+        h1 {
+            color: red; /* Metin rengi beyaz yapmak için */
+            font-size: 20px; /* Metin boyutunu büyütmek için */
+            text-align: center;
+        }
+    </style>
+    <style>
+        /* Tablo özelleştirmeleri */
+        table {
+            width: 100%; /* Tabloyu genişletmek için */
+            border-collapse: collapse; /* Hücre sınırlarını birleştirmek için */
+            font-size: 18px; /* Tablo metin boyutu */
+        }
+        
+        th,
+        td {
+            padding: 10px; /* Hücre içi dolgusu */
+            border: 1px solid #ddd; /* Hücre sınırları */
+            text-align: center; /* Hücre içeriği ortalamak için */
+        }
+
+        th {
+            background-color: gray; /* Başlık hücresi arka plan rengi */
+            color: white; /* Başlık metin rengi */
+        }
+
+        /* Diğer stil özelleştirmeleri buraya ekleyebilirsiniz */
+    </style>
+</head>
+<body>
+    <!-- Navbar'ı dahil edin -->
+    {% include 'includes/navbar.html' %}
+    
+    <form method="POST" action="/update_permissions" style="max-width: 1000px; margin: 0 auto;">
+        <h1>Role Permissions Control Panel</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>Add Book</th>
+                    <th>Edit Book</th>
+                    <th>Delete Book</th>
+                    <th>Add Member</th>
+                    <th>Edit Members</th>
+                    <th>Delete Members</th>
+                    <th>Lend Book</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for permission in permissions %}
+                    <tr>
+                        <td>{{ permission.role }}</td>
+                        <td>
+                            <select name="addbook_{{ permission.id }}">
+                                <option value="True" {% if permission.addbook %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.addbook %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="editbook_{{ permission.id }}">
+                                <option value="True" {% if permission.editbook %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.editbook %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="deletebook_{{ permission.id }}">
+                                <option value="True" {% if permission.deletebook %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.deletebook %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="addmember_{{ permission.id }}">
+                                <option value="True" {% if permission.addmember %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.addmember %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="editmembers_{{ permission.id }}">
+                                <option value="True" {% if permission.editmembers %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.editmembers %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="deletemembers_{{ permission.id }}">
+                                <option value="True" {% if permission.deletemembers %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.deletemembers %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="lendbook_{{ permission.id }}">
+                                <option value="True" {% if permission.lendbook %}selected{% endif %}>True</option>
+                                <option value="False" {% if not permission.lendbook %}selected{% endif %}>False</option>
+                            </select>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <input type="submit" value="Save" style ="font-size:18px; background-color:grey;  ">
+    </form>
+    <br>
+    <br>
+    <br>
+    
+        
+    <form method="POST" action="/update_users" style="max-width:800px; margin: 0 auto;">
+        <h1>User Management Control Panel</h1>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th><a href="javascript:void(0);" onclick="sortTable(0, 'number')">ID</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(1, 'text')">Name</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(2, 'text')">Username</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(3, 'text')">Old Role</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(4, 'text')">Role</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            <select name="user_role_{{ user.id }}" id="user_role_{{ user.id }}">
+                                <option value="uye" {% if user.role == 'uye' %}selected{% endif %}>Uye</option>
+                                <option value="yonetici" {% if user.role == 'yonetici' %}selected{% endif %}>Yonetici</option>
+                                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                            </select>
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <input type="submit" value="Save" style ="font-size:18px; background-color:grey;  ">
+    </form>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script>
+        function sortTable(columnIndex, columnType) {
+            const table = document.getElementById("userTable");
+            const rows = Array.from(table.getElementsByTagName("tr"));
+            const headerRow = rows.shift(); // Başlık satırını kaldır
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.getElementsByTagName("td")[columnIndex].textContent;
+                const cellB = rowB.getElementsByTagName("td")[columnIndex].textContent;
+
+                if (columnType === "number") {
+                    return parseInt(cellA) - parseInt(cellB);
+                } else {
+                    return cellA.localeCompare(cellB);
+                }
+            });
+
+            if (sortDirection[columnIndex] === "ascending") {
+                rows.reverse();
+                sortDirection[columnIndex] = "descending";
+            } else {
+                sortDirection[columnIndex] = "ascending";
+            }
+
+            // Tabloyu yeniden oluştur
+            table.innerHTML = "";
+            table.appendChild(headerRow);
+            rows.forEach(row => {
+                table.appendChild(row);
+            });
+        }
+        
+        let sortDirection = {}; // Sıralama yönünü izlemek için bir nesne
+    </script>
+</body>
+</html>

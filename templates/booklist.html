@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylee.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <title>Booklist</title>
+    <!-- CSS dosyalarını bağlayın -->
+    <style>
+        .input-lg {
+            height: 40px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar'ı dahil edin -->
+    {% include 'includes/navbar.html' %}
+    
+    <div class="container">
+              
+        <table class="table">
+            <form action="/searchbook" method="post">
+                <input type="text" name="keyword" class="input-lg" maxlength="64" placeholder="Ara...">
+                <button type="submit" class="btn btn-danger btn-sm">Ara</button>
+            </form>
+                {% include "includes/messages.html" %}
+            <thead>
+                <tr>
+                    <th><a href="javascript:void(0);" onclick="sortTable(0, 'number')">ID</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(1, 'text')">Bookname</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(2, 'text')">Author</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(3, 'number')">Page</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(4, 'number')">ISBN</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(5, 'number')">Year Of Edition</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(6, 'text')">Given Member</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(7, 'text')">End Date</a></th>
+                    <th><a href="javascript:void(0);" onclick="sortTable(8, 'number')">Remaining Day</a></th>
+                    {% if session["Logged_in"] %}
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>Lending</th>
+                    {% else %}  
+                    {% endif %}    
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td style="vertical-align: middle;">{{ book.id }}</td>
+                        <td style="vertical-align: middle;">{{ book.bookname }}</td>
+                        <td style="vertical-align: middle;">{{ book.author }}</td>
+                        <td style="vertical-align: middle;">{{ book.page }}</td>
+                        <td style="vertical-align: middle;">{{ book.isbn }}</td>
+                        <td style="vertical-align: middle;">{{ book.year_of_edition }}</td>
+                        <td style="vertical-align: middle;">{{ book.given_member }}</td>
+                        <td style="vertical-align: middle;">{{ book.end_date }}</td>
+                        <td style="vertical-align: middle;">{{ book.remaining_day }}</td>
+                        
+                    {% if session["Logged_in"] %}
+                        <td style="vertical-align: middle;"><a href="/editbook/{{ book.id }}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td style="vertical-align: middle;">
+                                <a href="/deletebook/{{ book.id }}" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                        </td>
+                        {% if book.given_member %}
+                        {% else %}
+                           
+                        {% endif %}
+                            
+                        {% if not book.given_member %}
+                            <td style="vertical-align: middle;"><a href="/lendbook/{{ book.id }}"><i class="fa-solid fa-share"></i></a></td>
+                        {% endif %}
+                          
+                        {% else %}  
+                        {% endif %}             
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if session["Logged_in"] %}
+            {% if session["user_id"]  %}
+                <a href="/addbook" class="btn">Yeni Kitap Ekle</a>
+            {% endif %}
+        {% else %}
+
+        {% endif %}
+    </div>
+
+    <!-- JavaScript dosyalarını bağlayabilirsiniz (isteğe bağlı) -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script>
+        let sortDirection = {}; // Sıralama yönünü izlemek için bir nesne
+
+        function sortTable(columnIndex, columnType) {
+            let table, rows, switching, i, x, y, shouldSwitch;
+            table = document.querySelector(".table");
+            switching = true;
+
+            // Sıralama yönünü belirle veya tersine çevir
+            if (!sortDirection[columnIndex]) {
+                sortDirection[columnIndex] = "ascending";
+            } else {
+                sortDirection[columnIndex] = sortDirection[columnIndex] === "ascending" ? "descending" : "ascending";
+            }
+
+            // Sıralama işlemi devam ederken
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                // Tablonun satırlarını döngüye al
+                for (i = 1; i < rows.length - 1; i++) {
+                    shouldSwitch = false;
+
+                    // İlgili sütunlardaki verileri al
+                    x = rows[i].getElementsByTagName("td")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+                    // Sıralama yönüne göre sırala
+                    if (sortDirection[columnIndex] === "ascending") {
+                        shouldSwitch = compareValues(x, y, columnType) > 0;
+                    } else {
+                        shouldSwitch = compareValues(x, y, columnType) < 0;
+                    }
+
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+        // İki değeri karşılaştırmak için yardımcı işlev
+        function compareValues(x, y, columnType) {
+            if (columnType === "text") {
+                return x.innerHTML.toLowerCase().localeCompare(y.innerHTML.toLowerCase());
+            } else if (columnType === "number") {
+                return Number(x.innerHTML) - Number(y.innerHTML);
+            }
+            return 0;
+        }
+
+        
+     </script>
+
+</body>
+</body>
+</html>
